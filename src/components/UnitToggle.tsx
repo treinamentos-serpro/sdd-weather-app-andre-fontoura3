@@ -6,7 +6,7 @@ interface UnitToggleProps {
 }
 
 const buttonClassName =
-  'h-11 w-14 rounded-md text-sm font-semibold text-white/80 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white aria-pressed:bg-accent-400 aria-pressed:text-night-900';
+  'h-11 w-14 rounded-md text-sm font-semibold text-white/80 hover:bg-white/10 aria-pressed:bg-accent-400 aria-pressed:text-night-900 forced-colors:aria-pressed:bg-[Highlight] forced-colors:aria-pressed:text-[HighlightText]';
 
 export default function UnitToggle({ unit, onChange }: UnitToggleProps) {
   return (

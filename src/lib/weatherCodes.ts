@@ -44,6 +44,7 @@ const weatherCodes: Record<number, WeatherCondition> = {
   86: { label: 'Pancadas de neve intensas', icon: CloudSnow },
   95: { label: 'Trovoada', icon: CloudLightning },
   96: { label: 'Trovoada com granizo leve', icon: CloudLightning },
+  97: { label: 'Trovoada forte', icon: CloudLightning },
   99: { label: 'Trovoada com granizo intenso', icon: CloudLightning },
 };
 

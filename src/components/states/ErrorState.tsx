@@ -17,7 +17,7 @@ export default function ErrorState({
       <button
         type="button"
         onClick={onRetry}
-        className="mt-4 inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-white backdrop-blur-md hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+        className="mt-4 inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-white backdrop-blur-md hover:bg-white/10"
       >
         <RotateCcw aria-hidden="true" className="h-4 w-4 shrink-0" />
         <span className="break-words">Tentar novamente</span>

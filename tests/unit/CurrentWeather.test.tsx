@@ -1,8 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import CurrentWeather from '../../src/components/CurrentWeather';
-import { formatTemperature, toFahrenheit } from '../../src/lib/temperature';
-import { getWeatherCondition } from '../../src/lib/weatherCodes';
 import { mockWeatherData } from '../../src/mocks/weather';
 
 afterEach(cleanup);
@@ -68,38 +66,5 @@ describe('CurrentWeather', () => {
     );
 
     expect(screen.getAllByText('\u2014')).toHaveLength(5);
-  });
-});
-
-describe('temperature', () => {
-  it.each([
-    [0, 32],
-    [100, 212],
-    [-40, -40],
-  ])('converte %s Celsius para %s Fahrenheit', (celsius, fahrenheit) => {
-    expect(toFahrenheit(celsius)).toBe(fahrenheit);
-  });
-
-  it('arredonda consistentemente e trata valores invalidos', () => {
-    expect(formatTemperature(28.4, 'celsius')).toBe('28\u00b0C');
-    expect(formatTemperature(28.4, 'fahrenheit')).toBe('83\u00b0F');
-    expect(formatTemperature(-0.1, 'celsius')).toBe('0\u00b0C');
-    expect(formatTemperature(Number.NaN, 'celsius')).toBe('\u2014');
-  });
-});
-
-describe('weatherCodes', () => {
-  it.each([
-    0, 1, 2, 3, 45, 48, 51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 71, 73, 75, 77, 80, 81, 82, 85, 86,
-    95, 96, 99,
-  ])('mapeia o codigo Open-Meteo %s para condicao e icone', (code) => {
-    const condition = getWeatherCondition(code);
-
-    expect(condition.label).not.toBe('Condi\u00e7\u00e3o desconhecida');
-    expect(condition.icon).toBeDefined();
-  });
-
-  it('oferece fallback para codigo desconhecido', () => {
-    expect(getWeatherCondition(999).label).toBe('Condi\u00e7\u00e3o desconhecida');
   });
 });

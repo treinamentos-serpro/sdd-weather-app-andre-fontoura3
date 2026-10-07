@@ -41,15 +41,15 @@
 
 ### T-06 — Service de forecast
 - **Tipo:** Data
-- **Descrição:** `getWeather(lat, lon)` mapeando `current` + `daily` para `WeatherData`.
-- **Critérios:** retorna 5 dias; mapeia campos; trata erro/timeout/resposta parcial.
+- **Descrição:** `getWeather(lat, lon)` mapeando `current` + `daily` e retornando `{current, forecast}` (o hook compõe o `WeatherData` com a `City`). Absorve a parte de dados de T-18 (timeout e resposta parcial).
+- **Critérios:** retorna `{current, forecast}` com 5 dias; mapeia campos; trata erro, timeout (com `AbortController`) e resposta parcial (campo ausente → `—`, sem quebrar).
 - **Dependências:** T-01, T-05
 - **Arquivos:** `src/services/weatherService.ts`
 
 ### T-07 — Hook `useWeather`
 - **Tipo:** Data
 - **Descrição:** orquestra busca/seleção/forecast; expõe `state`, `data`, `error`, ações.
-- **Critérios:** máquina `idle|loading|success|error|empty`; retry.
+- **Critérios:** máquina `idle|loading|success|error|empty|selecting`; 1 resultado seleciona automaticamente; >1 resultado entra em `selecting`; 0 resultados entra em `empty`; `retry` repete a etapa que falhou (busca ou forecast).
 - **Dependências:** T-05, T-06
 - **Arquivos:** `src/hooks/useWeather.ts`
 
@@ -60,6 +60,13 @@
 - **Critérios:** input acessível (label/role); dispara busca; bloqueia input vazio.
 - **Dependências:** T-07
 - **Arquivos:** `src/components/SearchBar.tsx`
+
+### T-08b — Componente `CitySuggestions`
+- **Tipo:** UI
+- **Descrição:** lista de sugestões de cidades exibida quando a busca retorna mais de 1 resultado; props `cities` e `onSelect`.
+- **Critérios:** cada item mostra nome com país/estado; acessível (role `listbox`/`option` ou lista de botões, rótulo, foco visível); navegação e seleção por teclado; chama `onSelect(city)`.
+- **Dependências:** T-01
+- **Arquivos:** `src/components/CitySuggestions.tsx`
 
 ### T-09 — Componentes de estado (Loading/Error/Empty)
 - **Tipo:** UI
@@ -120,8 +127,10 @@
 
 ### T-18 — Resiliência e edge cases
 - **Tipo:** Data/UI
-- **Critérios:** timeout, resposta parcial ("—"), mensagens claras.
+- **Descrição:** timeout e resposta parcial passam a ser tratados em T-06; aqui ficam as mensagens de erro e os testes de resiliência.
+- **Critérios:** mensagens de erro claras em pt-BR por tipo de falha; testes cobrem timeout, falha de API e resposta parcial ("—").
 - **Dependências:** T-06, T-09
+- **Arquivos:** `src/lib/errorMessages.ts`, `tests/unit/*`
 
 ---
 
@@ -129,7 +138,7 @@
 
 | Requisito | Tarefas             |
 | --------- | ------------------- |
-| RF1 busca | T-05, T-08          |
+| RF1 busca | T-05, T-08, T-08b   |
 | RF2 atual | T-06, T-10          |
 | RF3 prev. | T-06, T-11          |
 | RF4 C/F   | T-02, T-12          |

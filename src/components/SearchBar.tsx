@@ -39,12 +39,13 @@ export default function SearchBar({ onSearch, disabled = false }: SearchBarProps
           onChange={(event) => setCity(event.target.value)}
           disabled={disabled}
           placeholder="Buscar cidade"
-          className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white shadow-glass backdrop-blur-md placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 disabled:cursor-not-allowed disabled:opacity-50"
+          enterKeyHint="search"
+          className="min-h-12 min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-base text-white shadow-glass backdrop-blur-md placeholder:text-white/60 disabled:cursor-not-allowed disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={disabled || !city.trim()}
-          className="shrink-0 rounded-lg border border-white/10 bg-night-800 px-5 py-3 font-medium text-white backdrop-blur-md hover:bg-night-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 disabled:cursor-not-allowed disabled:opacity-50"
+          className="min-h-12 shrink-0 rounded-lg border border-white/10 bg-night-800 px-5 py-3 font-medium text-white backdrop-blur-md enabled:hover:bg-night-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Buscar
         </button>

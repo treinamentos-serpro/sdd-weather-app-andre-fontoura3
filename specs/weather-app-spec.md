@@ -33,9 +33,11 @@ chave de API. Dados fornecidos pela Open-Meteo.
 ## Acceptance Criteria
 
 **RF1 / US1**
-- Dado um nome válido, Quando eu busco, Então vejo uma lista de cidades
-  correspondentes com país/estado.
-- Dado um nome sem resultados, Quando eu busco, Então vejo um estado vazio
+- Dado um nome válido com mais de 1 resultado, Quando eu busco, Então vejo uma
+  lista de sugestões de cidades com país/estado para eu selecionar.
+- Dado um nome válido com exatamente 1 resultado, Quando eu busco, Então a
+  cidade é selecionada automaticamente, sem exibir lista de sugestões.
+- Dado um nome com 0 resultados, Quando eu busco, Então vejo um estado vazio
   informativo.
 
 **RF2**

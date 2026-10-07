@@ -3,7 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    @apply m-0 bg-night-900 font-sans text-white;
+    @apply m-0 min-w-80 bg-night-900 font-sans text-white;
+  }
+
+  /* Outline (e não box-shadow) para continuar visível em forced-colors. */
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-accent-400;
   }
 }

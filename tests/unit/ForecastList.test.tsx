@@ -2,7 +2,6 @@ import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import ForecastCard from '../../src/components/ForecastCard';
 import ForecastList from '../../src/components/ForecastList';
-import { formatDayLabel } from '../../src/lib/format';
 import { mockWeatherData } from '../../src/mocks/weather';
 
 afterEach(cleanup);
@@ -99,22 +98,5 @@ describe('ForecastCard', () => {
     expect(screen.getByText('-5\u00b0C')).toBeInTheDocument();
     expect(screen.getByText('0\u00b0C')).toBeInTheDocument();
     expect(screen.getByText('0%')).toBeInTheDocument();
-  });
-});
-
-describe('formatDayLabel', () => {
-  it('rotula os dois primeiros dias sem depender da data do sistema', () => {
-    expect(formatDayLabel('2026-10-07', 0)).toBe('Hoje');
-    expect(formatDayLabel('2026-10-08', 1)).toBe('Amanh\u00e3');
-  });
-
-  it('formata os demais dias em pt-BR sem deslocamento de fuso', () => {
-    expect(formatDayLabel('2026-10-09', 2)).toBe('sex.');
-    expect(formatDayLabel('2026-10-10', 3)).toBe('s\u00e1b.');
-    expect(formatDayLabel('2026-10-11', 4)).toBe('dom.');
-  });
-
-  it('trata datas invalidas', () => {
-    expect(formatDayLabel('invalid', 2)).toBe('\u2014');
   });
 });

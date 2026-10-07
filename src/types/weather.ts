@@ -32,3 +32,12 @@ export interface WeatherData {
   current: CurrentWeather;
   forecast: ForecastDay[];
 }
+
+export type WeatherStatus = 'idle' | 'loading' | 'success' | 'error' | 'empty' | 'selecting';
+
+export type WeatherErrorCategory = 'network' | 'timeout' | 'http' | 'invalid-response';
+
+export interface WeatherForecast {
+  current: CurrentWeather;
+  forecast: ForecastDay[];
+}
