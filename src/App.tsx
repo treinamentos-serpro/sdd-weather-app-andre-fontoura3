@@ -52,10 +52,10 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-night-900 font-sans text-white">
+    <div className="min-h-dvh bg-night-900 font-sans text-white">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-10 focus:rounded-lg focus:bg-night-800 focus:p-3 focus:ring-2 focus:ring-accent-400"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-night-800 focus:p-3 focus:ring-2 focus:ring-accent-400"
       >
         {'Ir para o conte\u00fado'}
       </a>
@@ -71,7 +71,15 @@ export default function App() {
           </div>
         </div>
       </header>
-      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6">
+      <div aria-live="polite" className="sr-only">
+        {state.status === 'success' && `Clima de ${state.data.city.name} carregado.`}
+        {state.status === 'empty' && 'Nenhuma cidade encontrada.'}
+      </div>
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="mx-auto w-full max-w-5xl px-4 py-6 focus:outline-none sm:px-6"
+      >
         {state.status === 'idle' && (
           <EmptyState
             title="Clima da sua cidade"

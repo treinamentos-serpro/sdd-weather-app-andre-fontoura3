@@ -33,7 +33,8 @@ export default function CurrentWeather({ city, current, unit }: CurrentWeatherPr
       </h2>
       <p className="mt-1 break-words text-sm text-white/70">{location}</p>
       <div className="my-6 flex flex-wrap items-center gap-6">
-        <p className="break-all text-6xl font-bold tabular-nums">
+        <p className="break-all text-5xl font-bold tabular-nums sm:text-6xl">
+          <span className="sr-only">Temperatura atual: </span>
           {formatTemperature(current.temperature, unit)}
         </p>
         <WeatherIcon role="img" aria-label={label} className="h-20 w-20 shrink-0 text-sun" />
