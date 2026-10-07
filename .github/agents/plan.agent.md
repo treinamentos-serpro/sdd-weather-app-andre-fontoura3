@@ -1,6 +1,6 @@
 ---
 description: 'Plan Agent — converte a especificação em um plano técnico com arquitetura, stack, modelo de dados e estratégia de testes.'
-tools: ['codebase', 'search', 'editFiles']
+tools: [read/readFile, vscodeGeneral/usages, edit/editFiles, search]
 ---
 
 # Plan Agent

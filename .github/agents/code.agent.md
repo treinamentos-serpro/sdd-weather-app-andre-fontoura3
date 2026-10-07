@@ -1,6 +1,6 @@
 ---
 description: 'Code Agent — implementa tarefas do backlog seguindo a spec, o plano e as convenções do projeto.'
-tools: ['codebase', 'search', 'editFiles', 'runCommands', 'problems']
+tools: [execute/getTerminalOutput, execute/runInTerminal, read/terminalSelection, read/terminalLastCommand, read/problems, read/readFile, vscodeTasks/problems, vscodeGeneral/usages, edit/editFiles, search]
 ---
 
 # Code Agent
